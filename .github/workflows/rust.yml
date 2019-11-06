@@ -3,13 +3,18 @@ name: Rust
 on: [push]
 
 jobs:
-  build:
+    build:
+        runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v1
-    - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+        steps:
+            - uses: actions/checkout@v1
+            - name: Install minimal nightly with clippy and rustfmt
+              uses: actions-rs/toolchain@v1
+              with:
+                  profile: minimal
+                  toolchain: nightly
+                  components: rustfmt, clippy, rls
+            - name: Build
+              run: cargo build --verbose
+            - name: Run tests
+              run: cargo test --verbose
