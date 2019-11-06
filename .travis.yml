@@ -1,6 +1,7 @@
 matrix:
     include:
         - language: rust
+          rust: nightly-2019-11-05
           cache: cargo
           addons:
               apt:
