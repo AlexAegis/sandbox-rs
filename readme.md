@@ -6,6 +6,10 @@ This repo is intended as a drop in environment for testing out Rust features.
 
 ![Ferris](https://doc.rust-lang.org/nomicon/img/safeandunsafe.svg)
 
+## Chores
+
+Revert back from nightly when 1.39 comes out as `async/await` will be included there
+
 ## Version
 
 Using the nightly toolchain
