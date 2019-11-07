@@ -11,7 +11,7 @@ matrix:
                   bash <(curl https://raw.githubusercontent.com/xd009642/tarpaulin/master/travis-install.sh)
               fi
           before_script:
-              - rustup component add clippy --toolchain nightly
+              - rustup component add clippy --toolchain stable
           script:
               - cargo build --verbose --all
               - cargo test --verbose --all
