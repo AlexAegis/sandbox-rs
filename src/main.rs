@@ -1,5 +1,5 @@
 use sandbox::hello_world;
 
-pub fn main() -> () {
+pub fn main() {
 	hello_world();
 }
