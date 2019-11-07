@@ -1,6 +1,6 @@
 # [Rust Sandbox](https://www.rust-lang.org/)
 
-[![Build Status](https://travis-ci.com/AlexAegis/rs-sandbox.svg?branch=master)](https://travis-ci.com/AlexAegis/rs-sandbox) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/971fd3cc2aaa4652b378c40d30423f76)](https://www.codacy.com/manual/AlexAegis/rs-sandbox?utm_source=github.com&utm_medium=referral&utm_content=AlexAegis/rs-sandbox&utm_campaign=Badge_Grade) [![Coverage Status](https://img.shields.io/coveralls/github/AlexAegis/rs-sandbox.svg?label=coverage)](https://coveralls.io/github/AlexAegis/advent-of-code?branch=master)
+[![Build Status](https://travis-ci.com/AlexAegis/rs-sandbox.svg?branch=master)](https://travis-ci.com/AlexAegis/rs-sandbox) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/971fd3cc2aaa4652b378c40d30423f76)](https://www.codacy.com/manual/AlexAegis/rs-sandbox?utm_source=github.com&utm_medium=referral&utm_content=AlexAegis/rs-sandbox&utm_campaign=Badge_Grade) [![Coverage Status](https://img.shields.io/coveralls/github/AlexAegis/rs-sandbox.svg?label=coverage)](https://coveralls.io/github/AlexAegis/rs-sandbox?branch=master)
 
 This repo is intended as a drop in environment for testing out Rust features.
 
