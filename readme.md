@@ -6,29 +6,11 @@ This repo is intended as a drop in environment for testing out Rust features.
 
 ![Ferris](https://doc.rust-lang.org/nomicon/img/safeandunsafe.svg)
 
-## Chores
-
-Revert back from nightly when 1.39 comes out as `async/await` will be included there
-
 ## Version
 
-Using the nightly toolchain
+Minimum Rust version is `1.39` because of `async/await`
 
-```bash
-rustup default nightly
-```
-
-Latest version I updated to. 1.40.0-nightly.
-
-```bash
-# rustc --version
-# rustc 1.40.0-nightly (1423bec54 2019-11-05)
-rustup update nightly-2019-11-05
-```
-
-You don't always want the latest nightly even if you want the latest features as it's might missing certain tools.
-
-This [rustup component history page](https://rust-lang.github.io/rustup-components-history/index.html) will tell you which version fits your needs.
+> The [rustup component history page](https://rust-lang.github.io/rustup-components-history/index.html) will tell you which nightly version fits your needs.
 
 ## [The Rust Book](https://doc.rust-lang.org/book/)
 
