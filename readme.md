@@ -16,6 +16,8 @@ Minimum Rust version is `1.39` because of `async/await`
 
 Introduction
 
+### [Chapter 3](./book/chapter_3)
+
 ## [Rust By Example](https://doc.rust-lang.org/stable/rust-by-example/)
 
 Learn by example
