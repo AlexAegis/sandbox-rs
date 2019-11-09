@@ -4,7 +4,7 @@
 
 -   [Generate the nth Fibonacci number](./src/fibonacci.rs)
 
--   Print the lyrics to the Christmas carol “The Twelve Days of Christmas,” taking advantage of the repetition in the song.
+-   [Print the lyrics to the Christmas carol “The Twelve Days of Christmas,” taking advantage of the repetition in the song.](./src/christmas.rs)
 
 ### Running Tests
 
