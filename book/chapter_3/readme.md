@@ -1,6 +1,6 @@
 # [Book Chaper 3](https://doc.rust-lang.org/book/ch03-05-control-flow.html#summary)
 
--   Convert temperatures between Fahrenheit and Celsius.
+-   [Convert temperatures between Fahrenheit and Celsius.](./src/temperature.rs)
 
 -   [Generate the nth Fibonacci number](./src/fibonacci.rs)
 
