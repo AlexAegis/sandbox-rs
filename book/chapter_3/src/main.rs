@@ -9,8 +9,12 @@ pub fn main() {
 		temperature::f_to_c::<f64>(28.0_f64)
 	);
 	println!(
-		"Fibonacci, 6th number is {:?}",
+		"Fibonacci recursive, 6th number is {:?}",
 		fibonacci::fibonacci_recursive(6)
+	);
+	println!(
+		"Fibonacci, 6th number is {:?}",
+		fibonacci::fibonacci::<i32>(5)
 	);
 	println!("{}", christmas::christmas());
 }
