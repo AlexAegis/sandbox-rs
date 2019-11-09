@@ -11,8 +11,8 @@ fn fibonacci_benchmark(c: &mut Criterion) {
 }
 
 fn fibonacci_recursive_benchmark(c: &mut Criterion) {
-	c.bench_function("[Fibonacci] Recursive Larger", |b| {
-		b.iter(|| fibonacci::fibonacci_recursive::<i64>(black_box(92)))
+	c.bench_function("[Fibonacci] Recursive", |b| {
+		b.iter(|| fibonacci::fibonacci_recursive::<i64>(black_box(30)))
 	});
 }
 

@@ -13,8 +13,8 @@ pub fn main() {
 		fibonacci::fibonacci_recursive(6)
 	);
 	println!(
-		"Fibonacci, 6th number is {:?}",
-		fibonacci::fibonacci::<i32>(5)
+		"Fibonacci iterative, 92th number is {:?}",
+		fibonacci::fibonacci::<i64>(92)
 	);
 	println!("{}", christmas::christmas());
 }
