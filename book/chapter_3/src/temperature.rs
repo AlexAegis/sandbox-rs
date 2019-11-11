@@ -25,6 +25,8 @@ mod tests {
 	#[test]
 	fn c_to_f_test() {
 		assert!(c_to_f::<f64>(6.0_f64).approx_eq(42.8_f64, (0.0, 2)));
+
+		let a: u8;
 	}
 
 	#[test]
