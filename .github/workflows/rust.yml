@@ -10,9 +10,8 @@ jobs:
       matrix:
         rust:
           - stable
-          - 1.39.0
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -29,9 +28,8 @@ jobs:
       matrix:
         rust:
           - stable
-          - 1.39.0
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -48,9 +46,8 @@ jobs:
       matrix:
         rust:
           - stable
-          - 1.39.0
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
@@ -69,9 +66,8 @@ jobs:
       matrix:
         rust:
           - stable
-          - 1.39.0
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - uses: actions-rs/toolchain@v1
         with:
           profile: minimal
