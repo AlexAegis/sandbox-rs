@@ -33,5 +33,6 @@ opt-level = 3
 
 [workspace]
 members = [
-	"book/chapter_3"
+	"book/chapter_3",
+	"crates/mandelbrot",
 ]
