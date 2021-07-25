@@ -1,5 +1,5 @@
 [package]
-name = "mandlebrot"
+name = "mandelbrot"
 version = "0.0.1"
 authors = ["AlexAegis <alexaegis@gmail.com>"]
 license = "mit"
@@ -10,6 +10,16 @@ repository = "https://github.com/AlexAegis/rs-sandbox"
 num = "0.4.0"
 image = "0.23.14"
 clap = "2.33.3"
+rayon = "1.5.1"
 
 [dev-dependencies]
 criterion = "0.3.0"
+
+[lib]
+name = "mandelbrot"
+bench = true
+doc = true
+
+[[bench]]
+name = "bench"
+harness = false
