@@ -8,7 +8,7 @@ repository = "https://github.com/AlexAegis/rs-sandbox"
 
 [dependencies]
 num = "0.4.0"
-cached = "0.23.0"
+cached = "0.24.0"
 clap = "2.33.0"
 async-std = "1.0.0"
 tokio = "1.9.0"
@@ -35,4 +35,5 @@ opt-level = 3
 members = [
 	"book/chapter_3",
 	"crates/mandelbrot",
+	"crates/mandelbrot_gfx",
 ]
