@@ -1,0 +1,13 @@
+[package]
+name = "hello_world"
+version = "1.0.0"
+authors = ["AlexAegis <alexaegis@gmail.com>"]
+license = "mit"
+edition = "2018"
+repository = "https://github.com/AlexAegis/rs-sandbox"
+
+[lib]
+name = "hello_world"
+bench = true
+doc = true
+

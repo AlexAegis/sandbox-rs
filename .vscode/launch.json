@@ -7,18 +7,34 @@
 		{
 			"type": "lldb",
 			"request": "launch",
-			"name": "Current Rust Cargo",
-			"program": "cargo",
-			"args": [
-				"run",
-				"--",
-				"--workspace",
-				"${workspaceFolder}"
-			],
-			"cwd": "${fileDirname}",
-			"symbolSearchPath": "${workspaceFolder}\\target\\debug",
-			"preLaunchTask": "cargo build",
-			"internalConsoleOptions": "openOnSessionStart" // Focus the Debug Console on run
+			"name": "Launch Hello World",
+			"cargo": {
+				"args": [
+					"build",
+					"--package=hello_world",
+					"--bins"
+				],
+				"filter": {
+					"name": "hello_world",
+					"kind": "bin"
+				}
+			}
+		},
+		{
+			"type": "lldb",
+			"request": "launch",
+			"name": "Launch Mandelbrot Gfx",
+			"cargo": {
+				"args": [
+					"build",
+					"--package=mandelbrot_gfx",
+					"--bins"
+				],
+				"filter": {
+					"name": "mandelbrot_gfx",
+					"kind": "bin"
+				}
+			}
 		}
 	],
 	"inputs": []
