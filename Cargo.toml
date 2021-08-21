@@ -2,6 +2,7 @@
 resolver = "2"
 members = [
 	"book/chapter_3",
+	"crates/dispatcher",
 	"crates/hello_world",
 	"crates/mandelbrot",
 	"crates/mandelbrot_gfx",

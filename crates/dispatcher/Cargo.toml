@@ -1,0 +1,16 @@
+[package]
+name = "dispatcher"
+version = "1.0.0"
+authors = ["AlexAegis <alexaegis@gmail.com>"]
+license = "mit"
+edition = "2018"
+repository = "https://github.com/AlexAegis/rs-sandbox"
+
+[dependencies]
+tokio = { version = "1.10.0", features = ["full"] }
+
+[lib]
+name = "dispatcher"
+bench = true
+doc = true
+
