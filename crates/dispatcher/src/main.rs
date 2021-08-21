@@ -1,49 +1,45 @@
-use dispatcher::{Observable, Observer, Subject};
+use std::sync::{Arc, Mutex};
 
-struct SimpleObserver<T: std::fmt::Debug> {
-	id: T,
-}
+use dispatcher::{observable::Observable, observer::AnyObserver, subject::Subject};
 
-impl<T: std::fmt::Debug> SimpleObserver<T> {
-	fn new(id: T) -> Self {
-		Self { id }
-	}
-}
-
-impl<T: Send + Sync + std::fmt::Debug> Observer<T> for SimpleObserver<T> {
-	fn next(&self, value: &T) {
-		println!("SimpleObserver {:?} got value: {:?}", self.id, value);
-	}
-}
-
-pub fn main() {
+pub fn main() -> Result<(), Box<dyn std::error::Error>> {
 	std::env::set_var("RUST_LOG", "debug");
 	env_logger::init();
 	log::debug!("Main started, env logger initialized");
 
-	let subject = Subject::<String>::new();
-	let simple_observer = SimpleObserver::new("s1".to_string());
+	let subject = Arc::new(Mutex::new(Subject::<String>::new()));
 
-	subject.next("No one will hear me!".to_string());
+	let _sub1 = subject
+		.lock()
+		.unwrap()
+		.subscribe(AnyObserver::ClojureObserver(Box::new(
+			|message: &String| println!("Got Message in first subscription! {:?}", message),
+		)));
 
-	let simple_subscription =
-		subject.subscribe(dispatcher::AnyObserver::Observer(Box::new(simple_observer)));
+	let _sub2 = subject
+		.lock()
+		.unwrap()
+		.subscribe(AnyObserver::ClojureObserver(Box::new(
+			|message: &String| println!("Got Message in second subscription! {:?}", message),
+		)));
 
-	subject.subscribe(dispatcher::AnyObserver::ClojureObserver(Box::new(
-		|message: &String| println!("Got Message in first subscription! {:?}", message),
-	)));
-	subject.subscribe(dispatcher::AnyObserver::ClojureObserver(Box::new(
-		|message: &String| println!("Got Message in second subscription! {:?}", message),
-	)));
+	let s1 = subject.clone();
+	let h1 = std::thread::spawn(move || {
+		std::thread::sleep(std::time::Duration::from_secs(1));
+		s1.lock().unwrap().next("Welcome from thread 1".to_string());
+		// sub1.unsubscribe();
+		return s1;
+	});
 
-	let welcoming_subscription = subject.subscribe(dispatcher::AnyObserver::ClojureObserver(
-		Box::new(|message: &String| println!("Got Message in third subscription! {:?}", message)),
-	));
+	let s2 = subject.clone();
+	let h2 = std::thread::spawn(move || {
+		std::thread::sleep(std::time::Duration::from_secs(2));
+		s2.lock().unwrap().next("Welcome from thread 2".to_string());
+		return s2;
+	});
 
-	subject.next("Hello!".to_string());
-	simple_subscription.unsubscribe();
+	h1.join().unwrap();
+	h2.join().unwrap();
 
-	subject.next("And".to_string());
-	welcoming_subscription.unsubscribe();
-	subject.next("Welcome!".to_string());
+	Ok(())
 }
