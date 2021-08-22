@@ -18,25 +18,21 @@ impl Window {
 	}
 
 	pub async fn run(self, mut engine: Engine) {
-		self.event_loop
-			.run(move |event, _, control_flow| match event {
-				Event::WindowEvent {
-					event: WindowEvent::CloseRequested,
-					..
-				} => *control_flow = ControlFlow::Exit,
-				Event::WindowEvent {
-					event: WindowEvent::Resized(size),
-					..
-				} => {
-					// Reconfigure the surface with the new size
-					println!("Resized {:?}", size);
-					engine.resize_surface(size.height, size.width);
-				}
-				Event::WindowEvent {
-					event: WindowEvent::MouseWheel { delta, .. },
-					..
-				} => println!("{:?}", delta),
-				_ => (),
-			})
+		self.event_loop.run(move |e, _, control_flow| match e {
+			Event::WindowEvent {
+				event: WindowEvent::CloseRequested,
+				..
+			} => *control_flow = ControlFlow::Exit,
+			Event::WindowEvent {
+				event: WindowEvent::Resized(size),
+				..
+			} => engine.resize_surface(size.height, size.width),
+			Event::WindowEvent {
+				event: WindowEvent::MouseWheel { delta, .. },
+				..
+			} => println!("{:?}", delta),
+			Event::RedrawRequested(_) => engine.redraw(),
+			_ => (),
+		})
 	}
 }
