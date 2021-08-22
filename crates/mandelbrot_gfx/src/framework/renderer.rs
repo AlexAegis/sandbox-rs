@@ -1,7 +1,7 @@
 use std::borrow::Cow;
 
 use wgpu::{
-	Adapter, Device, Extent3d, Instance, Queue, RenderPipeline, ShaderModule, Surface,
+	Adapter, Color, Device, Extent3d, Instance, Queue, RenderPipeline, ShaderModule, Surface,
 	TextureFormat,
 };
 use winit::{
@@ -10,22 +10,26 @@ use winit::{
 	window::Window,
 };
 
+use crate::framework::entity::EntityUniforms;
+
 #[derive(Debug)]
-pub struct Engine {
+pub struct Renderer {
 	pub(crate) instance: Instance,
 	pub(crate) surface: Surface,
 	pub(crate) surface_config: wgpu::SurfaceConfiguration,
 	pub(crate) device: Device,
 	pub(crate) render_pipeline: RenderPipeline,
 	pub(crate) queue: Queue,
+	pub clear_color: Option<Color>,
 }
 
-impl Engine {
+impl Renderer {
 	pub async fn new(window: &Window) -> Self {
 		let size = window.inner_size();
 
 		let instance = wgpu::Instance::new(wgpu::Backends::all());
 		let surface = unsafe { instance.create_surface(window) };
+
 		let adapter = instance
 			.request_adapter(&wgpu::RequestAdapterOptions {
 				power_preference: wgpu::PowerPreference::default(),
@@ -50,7 +54,7 @@ impl Engine {
 
 		let texture_format = surface.get_preferred_format(&adapter).unwrap();
 
-		let render_pipeline = Engine::create_render_pipeline(&device, texture_format);
+		let render_pipeline = Renderer::create_render_pipeline(&device, texture_format);
 
 		let surface_config = wgpu::SurfaceConfiguration {
 			usage: wgpu::TextureUsages::RENDER_ATTACHMENT,
@@ -67,6 +71,7 @@ impl Engine {
 			device,
 			render_pipeline,
 			queue,
+			clear_color: Some(Color::BLUE),
 		};
 
 		instance.reconfigure_surface();
@@ -111,10 +116,14 @@ impl Engine {
 		self.surface.configure(&self.device, &self.surface_config);
 	}
 
-	pub fn resize_surface(&mut self, height: u32, width: u32) {
-		self.surface_config.height = height;
-		self.surface_config.width = width;
+	pub fn resize(&mut self, size: winit::dpi::PhysicalSize<u32>) {
+		self.surface_config.height = size.height;
+		self.surface_config.width = size.width;
 		self.reconfigure_surface();
+	}
+
+	pub fn input(&mut self, event: &WindowEvent) -> bool {
+		false
 	}
 
 	pub fn redraw(&self) {
@@ -138,7 +147,7 @@ impl Engine {
 					view: &view,
 					resolve_target: None,
 					ops: wgpu::Operations {
-						load: wgpu::LoadOp::Clear(wgpu::Color::GREEN),
+						load: wgpu::LoadOp::Clear(self.clear_color.unwrap_or_default()),
 						store: true,
 					},
 				}],
@@ -155,5 +164,9 @@ impl Engine {
 			"WGPU_BACKEND: {}",
 			std::env::var("WGPU_BACKEND").unwrap_or("Not set".to_string())
 		);
+	}
+
+	pub fn change_clear_color(&mut self, color: wgpu::Color) {
+		self.clear_color = Some(color);
 	}
 }

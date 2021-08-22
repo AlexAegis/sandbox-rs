@@ -9,11 +9,12 @@ repository = "https://github.com/AlexAegis/rs-sandbox"
 [dependencies]
 num = "0.4.0"
 clap = "2.33.3"
+cgmath = "0.18"
 rayon = "1.5.1"
 wgpu = { version = "0.10.1" }
 winit = "0.25.0"
 tokio = { version = "1.10.0", features = ["full"] }
-bytemuck = "1.7.2"
+bytemuck = { version = "1.7.2", features = ["derive"] }
 
 [dev-dependencies]
 criterion = "0.3.0"
